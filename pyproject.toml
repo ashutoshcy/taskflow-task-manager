@@ -1,0 +1,9 @@
+[project]
+name = "task-management-api"
+version = "0.2.0"
+description = "Taskflow — responsive task management dashboard and FastAPI backend"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

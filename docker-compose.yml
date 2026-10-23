@@ -1,0 +1,20 @@
+# Local development PostgreSQL only. Change secrets for nonlocal deployments.
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: task_user
+      POSTGRES_PASSWORD: dev_password_change_me
+      POSTGRES_DB: task_manager
+    ports:
+      - "5432:5432"
+    volumes:
+      - task_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U task_user -d task_manager"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  task_postgres_data:

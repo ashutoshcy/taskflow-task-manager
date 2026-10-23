@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#17182b" />
+  <meta name="description" content="Taskflow — a beautifully simple workspace to plan, prioritize, and get things done." />
+  <title>Taskflow — Your work, in flow</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="stylesheet" href="/static/styles.css" />
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 2 5-7"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.7"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4m0 1c5-4 9 4 14 0v12c-5 4-9-4-14 0"/></symbol>
+    <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12"/><path d="M3 6h.1M3 12h.1M3 18h.1"/></symbol>
+    <symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m3 0-1 14H7L6 7M10 11v6M14 11v6"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></symbol>
+    <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M4 4h16l2 11v5H2v-5L4 4Z"/><path d="M2 15h6l2 3h4l2-3h6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2L12 2Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15.6A8.6 8.6 0 0 1 8.4 4 8.6 8.6 0 1 0 20 15.6Z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+  </svg>
+  <a class="skip-link" href="#board">Skip to tasks</a>
+  <div class="app-shell">
+    <div class="mobile-scrim" id="mobile-scrim" hidden></div>
+    <aside class="sidebar" id="sidebar" aria-label="Sidebar navigation">
+      <div class="brand"><span class="brand-logo"><span class="brand-spark">✦</span></span><span>taskflow<span class="brand-dot">.</span></span></div>
+      <div class="workspace-selector"><span class="workspace-icon">W</span><span class="workspace-text"><strong>My workspace</strong><small>Personal space</small></span><svg class="icon small"><use href="#i-chevron"/></svg></div>
+      <div class="nav-heading">WORKSPACE</div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <button class="nav-link active" data-nav="overview"><svg class="icon"><use href="#i-grid"/></svg> Overview</button>
+        <button class="nav-link" data-nav="all"><svg class="icon"><use href="#i-layers"/></svg> All tasks <span id="nav-total" class="nav-count">0</span></button>
+        <button class="nav-link" data-nav="completed"><svg class="icon"><use href="#i-check-circle"/></svg> Completed</button>
+        <button class="nav-link" data-nav="insights"><svg class="icon"><use href="#i-chart"/></svg> Insights</button>
+      </nav>
+      <div class="sidebar-separator"></div>
+      <div class="nav-heading">YOUR FLOW</div>
+      <div class="side-stats"><span class="side-status"><span class="status-indicator purple"></span> In progress <strong id="side-progress">0</strong></span><span class="side-status"><span class="status-indicator orange"></span> To do <strong id="side-todo">0</strong></span><span class="side-status"><span class="status-indicator green"></span> Done <strong id="side-done">0</strong></span></div>
+      <div class="sidebar-bottom"><div class="shortcut-box"><span class="shortcut-icon">✳</span><strong>Little progress adds up.</strong><p>One task at a time, you've got this.</p><button class="shortcut-action" id="sidebar-add">Create a task <svg class="icon small"><use href="#i-arrow-up-right"/></svg></button></div><div class="sidebar-person"><div class="avatar">A</div><div><strong>My workspace</strong><small>Local development</small></div><span class="online-indicator" title="Running locally"></span></div></div>
+    </aside>
+
+    <main class="main-content" id="main-content">
+      <header class="topbar"><div class="crumbs"><button id="mobile-menu" class="icon-button mobile-menu" aria-label="Open navigation"><svg class="icon"><use href="#i-menu"/></svg></button><span class="crumb-muted">Workspace</span><svg class="icon crumbs-chevron"><use href="#i-chevron"/></svg><strong id="current-page">Overview</strong></div><div class="top-actions"><span class="today" id="today-label"></span><span class="top-separator"></span><button class="icon-button theme-switch" id="theme-switch" title="Toggle dark mode" aria-label="Toggle dark mode"><svg class="icon"><use href="#i-moon"/></svg></button><span class="header-avatar" title="Personal workspace">A</span></div></header>
+
+      <div class="content-wrap">
+        <section class="welcome" id="welcome"><div class="welcome-copy"><div class="eyebrow"><span class="eyebrow-bullet"></span> YOUR PERSONAL WORKSPACE</div><h1>Make space for <em>great work.</em></h1><p>Stay focused, move things forward, and celebrate every little win.</p></div><button class="primary-button top-new-task" id="hero-add"><svg class="icon"><use href="#i-plus"/></svg> New task <span class="key-hint">N</span></button></section>
+
+        <section class="overview-top" id="overview-top" aria-label="Task overview">
+          <div class="metrics"><article class="metric"><div class="metric-header"><span class="metric-icon purple-icon"><svg class="icon"><use href="#i-layers"/></svg></span><span class="metric-overline">TOTAL TASKS</span></div><div class="metric-value" id="metric-total">—</div><div class="metric-caption">Everything on your plate</div><span class="metric-decoration decor-purple"></span></article><article class="metric"><div class="metric-header"><span class="metric-icon orange-icon"><svg class="icon"><use href="#i-clock"/></svg></span><span class="metric-overline">IN PROGRESS</span></div><div class="metric-value" id="metric-progress">—</div><div class="metric-caption">Keep the momentum going</div><span class="metric-decoration decor-orange"></span></article><article class="metric"><div class="metric-header"><span class="metric-icon green-icon"><svg class="icon"><use href="#i-check-circle"/></svg></span><span class="metric-overline">COMPLETED</span></div><div class="metric-value" id="metric-done">—</div><div class="metric-caption">Every win counts <span class="tiny-confetti">✦</span></div><span class="metric-decoration decor-green"></span></article></div>
+          <article class="momentum-card"><div class="momentum-copy"><span class="momentum-overline"><svg class="icon small"><use href="#i-spark"/></svg> YOUR MOMENTUM</span><strong>You're making<br/>things happen.</strong><p id="momentum-message">Every great project starts with one task.</p></div><div class="donut" id="donut" role="img" aria-label="0 percent complete"><div class="donut-inner"><strong id="donut-percent">0%</strong><span>completed</span></div></div><span class="momentum-glow"></span></article>
+        </section>
+
+        <section class="tasks-section" id="board"><div class="section-top"><div><div class="section-eyebrow">ORGANIZE YOUR DAY</div><h2>Your task board <span id="board-total" class="section-count">0</span></h2><p class="section-subtitle">A clear space for everything you're working on.</p></div><div class="board-actions"><button class="subtle-button" id="export-button" title="Export your visible tasks to CSV"><svg class="icon"><use href="#i-download"/></svg><span>Export</span></button><div class="view-toggle" role="group" aria-label="Task view"><button id="board-view" class="view-button selected" aria-pressed="true" title="Board view"><svg class="icon"><use href="#i-board"/></svg><span>Board</span></button><button id="list-view" class="view-button" aria-pressed="false" title="List view"><svg class="icon"><use href="#i-list"/></svg><span>List</span></button></div></div></div>
+          <div class="toolbar"><label class="search-field" for="search"><svg class="icon"><use href="#i-search"/></svg><input type="search" id="search" maxlength="120" placeholder="Search tasks..." autocomplete="off"/><kbd>/</kbd></label><div class="filter-group"><span class="filter-label"><svg class="icon"><use href="#i-filter"/></svg> Filter</span><select id="priority-filter" aria-label="Filter by priority"><option value="">All priorities</option><option value="high">High priority</option><option value="medium">Medium priority</option><option value="low">Low priority</option></select><select id="sort-select" aria-label="Sort tasks"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="due">Due date</option><option value="priority">Priority</option></select><button id="clear-filters" class="clear-filters" hidden>Clear filters</button></div></div>
+          <div id="inline-alert" class="inline-alert" role="alert" hidden><span id="inline-alert-text"></span><button id="retry-button" class="subtle-button">Retry</button></div>
+          <div id="board-content" class="kanban-board" aria-live="polite"><div class="loading-state"><span class="loading-spinner"></span> Loading your tasks...</div></div>
+          <div id="list-content" class="task-list" hidden></div>
+          <div class="board-footer"><span><span class="footer-dot"></span><span id="footer-summary">Getting everything ready...</span></span><span>Made for focused days <span class="footer-heart">♥</span></span></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="drawer-overlay" id="drawer-overlay" hidden></div>
+  <aside class="task-drawer" id="task-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-heading" aria-hidden="true" hidden>
+    <div class="drawer-header"><div><div class="drawer-eyebrow">TASK DETAILS</div><h2 id="drawer-heading">Create a task</h2></div><button type="button" id="drawer-close" class="icon-button close-button" aria-label="Close task editor"><svg class="icon"><use href="#i-close"/></svg></button></div>
+    <form id="task-form" novalidate><div class="drawer-body"><label class="field-label" for="task-title">Task name <span>*</span></label><input id="task-title" name="title" maxlength="120" required placeholder="What needs to get done?" class="form-input"/><span class="field-help">Keep it short and actionable.</span><label class="field-label" for="task-desc">Description <span class="optional">Optional</span></label><textarea id="task-desc" name="description" maxlength="1000" rows="5" class="form-input form-textarea" placeholder="Add a few details, notes, or context..."></textarea><div class="field-grid"><div><label class="field-label" for="task-status">Status</label><select id="task-status" class="form-input"><option value="todo">To do</option><option value="in_progress">In progress</option><option value="done">Done</option></select></div><div><label class="field-label" for="task-priority">Priority</label><select id="task-priority" class="form-input"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></div></div><label class="field-label" for="task-due">Due date <span class="optional">Optional</span></label><input id="task-due" type="date" class="form-input"/><div id="form-error" class="form-error" role="alert" hidden></div></div><div class="drawer-footer"><button type="button" id="delete-task" class="danger-text" hidden><svg class="icon"><use href="#i-trash"/></svg> Delete task</button><span class="drawer-footer-spacer"></span><button type="button" id="drawer-cancel" class="cancel-button">Cancel</button><button id="save-task" type="submit" class="primary-button">Create task <svg class="icon"><use href="#i-arrow-up-right"/></svg></button></div></form>
+  </aside>
+
+  <div class="confirm-overlay" id="confirm-overlay" hidden><div class="confirm-card" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-copy"><div class="confirm-icon"><svg class="icon"><use href="#i-trash"/></svg></div><h2 id="confirm-title">Delete this task?</h2><p id="confirm-copy">This action cannot be undone. Your task will be permanently removed.</p><div class="confirm-actions"><button id="confirm-cancel" class="cancel-button">Keep task</button><button id="confirm-delete" class="destructive-button">Yes, delete task</button></div></div></div>
+  <div id="toast-stack" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

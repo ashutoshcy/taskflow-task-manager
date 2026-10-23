@@ -1,0 +1,13 @@
+# Never commit your local config, Python caches, or task data.
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+*.db
+*.sqlite*
+.DS_Store
+.idea/
+.vscode/
